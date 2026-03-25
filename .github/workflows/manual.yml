@@ -1,0 +1,27 @@
+name: Fetch AI Feed
+on:
+  schedule:
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Fetch feed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/fetch_feed.py
+      - name: Commit
+        run: |
+          git config user.name "ai-feed-bot"
+          git config user.email "bot@databridge.co.kr"
+          git add data/feed.json
+          git diff --staged --quiet || git commit -m "chore: update feed $(date -u +%Y-%m-%dT%H:%M)"
+          git push
