@@ -224,11 +224,15 @@ body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--b
   <div class="modal">
     <div class="modal-title">스크립트에 반영</div>
     <div class="modal-sub" id="modal-item-title"></div>
-    <div class="chapter-grid" id="chapter-grid"></div>
-    <textarea class="modal-note" id="modal-note" placeholder="반영 메모 (선택)"></textarea>
+    <div id="modal-recommend" style="margin-bottom:14px;padding:12px;background:#f4f6f9;border-radius:8px;border-left:3px solid var(--teal);">
+      <div style="font-size:10px;font-weight:700;color:#8A9BB0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Min 추천 챕터</div>
+      <div id="modal-recommend-chapter" style="font-size:15px;font-weight:800;color:#1B2D3D;margin-bottom:4px;"></div>
+      <div id="modal-recommend-reason" style="font-size:11px;color:#4A6070;line-height:1.5;"></div>
+    </div>
+    <textarea class="modal-note" id="modal-note" placeholder="메모 (선택)"></textarea>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeModal()">취소</button>
-      <button class="btn-confirm" onclick="confirmApply()">승인 + 반영</button>
+      <button class="btn-confirm" onclick="confirmApply()">승인 →</button>
     </div>
   </div>
 </div>
@@ -417,23 +421,41 @@ function escAttr(s) {
 }
 
 // ── Modal ─────────────────────────────────────────────────────────
+// 항목 → 추천 챕터 자동 분류
+function suggestChapter(item) {
+  const text = ((item.title||'') + ' ' + (item.description||'') + ' ' + (item.tag||'') + ' ' + (item.full_name||'')).toLowerCase();
+  if (text.includes('install') || text.includes('설치') || text.includes('setup') || text.includes('get start') || text.includes('시작')) return { ch:'CH00', reason:'설치/시작 관련 — 강의 소개·환경 셋업 챕터에 적합합니다.' };
+  if (text.includes('claude.md') || text.includes('memory') || text.includes('메모리') || text.includes('context')) return { ch:'CH01', reason:'CLAUDE.md·메모리 관련 — CH01 기본 활용에 참고 자료로 추가하기 좋습니다.' };
+  if (text.includes('hooks') || text.includes('훅') || text.includes('trigger') || text.includes('skill')) return { ch:'CH01', reason:'Hooks/Skills 관련 — CH01-08 훅 챕터에 반영하면 좋습니다.' };
+  if (text.includes('sub-agent') || text.includes('subagent') || text.includes('서브에이전트') || text.includes('parallel')) return { ch:'CH02', reason:'서브에이전트 관련 — CH02 서브에이전트 시스템 챕터에 적합합니다.' };
+  if (text.includes('team') || text.includes('multi-agent') || text.includes('멀티 에이전트') || text.includes('orchestrat')) return { ch:'CH03', reason:'멀티 에이전트 팀 관련 — CH03 에이전트 팀 코워크 챕터에 적합합니다.' };
+  if (text.includes('mcp') || text.includes('model context protocol') || text.includes('server') && text.includes('claude')) return { ch:'CH05', reason:'MCP 서버 관련 — CH05 MCP & 외부 도구 연동 챕터에 딱 맞습니다.' };
+  if (text.includes('visual') || text.includes('chart') || text.includes('graph') || text.includes('시각화') || text.includes('대시보드') || text.includes('dashboard')) return { ch:'CH06', reason:'시각화 관련 — CH06 시각화 전략 자동 설계 챕터에 참고 자료로 추가하기 좋습니다.' };
+  if (text.includes('d3') || text.includes('vega') || text.includes('interactive')) return { ch:'CH07', reason:'D3.js·인터랙티브 시각화 관련 — CH07에 적합합니다.' };
+  if (text.includes('antigravity') || text.includes('windsurf') || text.includes('ide')) return { ch:'CH08', reason:'IDE/에디터 관련 — CH08 Antigravity 챕터에 적합합니다.' };
+  if (text.includes('marketing') || text.includes('마케팅') || text.includes('campaign') || text.includes('roas')) return { ch:'CH09', reason:'마케팅 분석 관련 — CH09 마케팅 대시보드 챕터에 적합합니다.' };
+  if (text.includes('a/b') || text.includes('ab test') || text.includes('테스트') || text.includes('experiment')) return { ch:'CH10', reason:'A/B 테스트 관련 — CH10에 적합합니다.' };
+  if (text.includes('pm') || text.includes('kpi') || text.includes('dau') || text.includes('retention') && !text.includes('hr')) return { ch:'CH11', reason:'PM KPI 관련 — CH11 PM KPI 시각화 챕터에 적합합니다.' };
+  if (text.includes('cohort') || text.includes('ltv') || text.includes('churn') || text.includes('리텐션')) return { ch:'CH12', reason:'리텐션·코호트 분석 관련 — CH12에 적합합니다.' };
+  if (text.includes('hr') || text.includes('recruit') || text.includes('채용') || text.includes('employee')) return { ch:'CH13', reason:'HR 관련 — CH13 HR 자동화 챕터에 적합합니다.' };
+  if (text.includes('openclaw') || text.includes('pipeline') || text.includes('automat') || text.includes('자동화')) return { ch:'CH14', reason:'자동화 파이프라인 관련 — CH14 Openclaw 파이프라인 챕터에 적합합니다.' };
+  if (text.includes('prompt') || text.includes('프롬프트') || text.includes('instruction')) return { ch:'CH01', reason:'프롬프트·지시 작성 관련 — CH01-06 효과적인 지시 작성에 적합합니다.' };
+  // 기본값: Claude Code 일반
+  return { ch:'CH01', reason:'Claude Code 일반 내용 — CH01 기본 활용 챕터에 참고 자료로 추가하기 좋습니다.' };
+}
+
 function openModal(id) {
   currentItem = allItems.find(i => i.id === id);
   if (!currentItem) return;
   document.getElementById('modal-item-title').textContent = currentItem.title || currentItem.full_name || '';
-  selectedChapter = currentItem.chapter || '';
   document.getElementById('modal-note').value = currentItem.note || '';
-  const grid = document.getElementById('chapter-grid');
-  grid.innerHTML = CHAPTERS.map(ch => `
-    <button class="chapter-btn ${ch === selectedChapter ? 'sel' : ''}" onclick="selectChapter('${ch}',this)">${ch}</button>
-  `).join('');
+  
+  const suggest = suggestChapter(currentItem);
+  selectedChapter = currentItem.chapter || suggest.ch;
+  document.getElementById('modal-recommend-chapter').textContent = '→ ' + selectedChapter;
+  document.getElementById('modal-recommend-reason').textContent = suggest.reason;
+  
   document.getElementById('modal').style.display = 'flex';
-}
-
-function selectChapter(ch, btn) {
-  selectedChapter = ch;
-  document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('sel'));
-  btn.classList.add('sel');
 }
 
 function closeModal() {
@@ -442,7 +464,7 @@ function closeModal() {
 }
 
 function confirmApply() {
-  if (!currentItem || !selectedChapter) { alert('챕터를 선택해주세요'); return; }
+  if (!currentItem) return;
   const note = document.getElementById('modal-note').value;
   currentItem.status = 'approved';
   currentItem.chapter = selectedChapter;
