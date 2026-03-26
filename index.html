@@ -385,9 +385,11 @@ function renderCards() {
     const statsLine = `<div class="card-stats">
       <span class="stat-item">❤ <span class="stat-num">${score.toLocaleString()}</span></span>
       ${comments ? `<span class="stat-item">💬 <span class="stat-num">${comments.toLocaleString()}</span></span>` : ''}
-      <a class="btn-link" href="${item.url}" target="_blank">🔗 원문 보기</a>
+      <a class="btn-link" href="${item.url}" target="_blank">🔗 원문</a>
       ${item.hn_url && item.hn_url !== item.url ? `<a class="btn-hn-link" href="${item.hn_url}" target="_blank">HN 댓글</a>` : ''}
-    </div>`;
+      <button class="btn-translate" onclick="translateCard('${escAttr(item.id)}', this)" data-id="${escAttr(item.id)}">🇰🇷 번역</button>
+    </div>
+    <div class="card-translation" id="trans-${escAttr(item.id)}" style="display:none;"></div>`;
 
     // action button
     let actionBtn = '';
@@ -473,6 +475,57 @@ function confirmApply() {
   closeModal();
   renderCards();
   console.log(`[승인] ${currentItem.title} → ${selectedChapter}`);
+}
+
+// ── Translation ──────────────────────────────────────────────────
+const transCache = {};
+
+async function translateCard(id, btn) {
+  const item = allItems.find(i => i.id === id);
+  if (!item) return;
+  
+  const transDiv = document.getElementById('trans-' + id.replace(/['"]/g, ''));
+  if (!transDiv) return;
+  
+  // 이미 번역됨 → 토글
+  if (transDiv.style.display !== 'none' && transDiv.textContent) {
+    transDiv.style.display = 'none';
+    btn.textContent = '🇰🇷 번역';
+    return;
+  }
+  
+  // 캐시 확인
+  const text = item.description || item.title || '';
+  if (transCache[id]) {
+    transDiv.textContent = transCache[id];
+    transDiv.style.display = 'block';
+    btn.textContent = '🇰🇷 숨기기';
+    return;
+  }
+  
+  btn.textContent = '번역 중...';
+  btn.classList.add('loading');
+  
+  try {
+    // MyMemory 무료 번역 API
+    const q = encodeURIComponent(text.substring(0, 500));
+    const r = await fetch(`https://api.mymemory.translated.net/get?q=${q}&langpair=en|ko`);
+    const data = await r.json();
+    const translated = data.responseData?.translatedText || '';
+    
+    if (translated && translated !== text) {
+      transCache[id] = translated;
+      transDiv.textContent = translated;
+      transDiv.style.display = 'block';
+      btn.textContent = '🇰🇷 숨기기';
+    } else {
+      btn.textContent = '🇰🇷 번역';
+    }
+  } catch(e) {
+    btn.textContent = '🇰🇷 번역';
+    console.error('translate failed:', e);
+  }
+  btn.classList.remove('loading');
 }
 
 function saveLocal(item) {
