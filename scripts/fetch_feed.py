@@ -23,6 +23,9 @@ if GITHUB_TOKEN:
     HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
 # 추적할 레포 목록 (직접 지정)
+# twitterapi.io API Key
+TWITTER_API_KEY = os.environ.get("TWITTER_API_KEY", "new1_84ea19ca7edd462b8c959031d075abb6")
+
 WATCH_REPOS = [
     # Claude Code 관련
     "anthropics/claude-code",
@@ -335,6 +338,16 @@ def main():
             seen_ids.add(item["id"])
             print(f"  ✓ [Reddit r/{item['subreddit']}] {item['title'][:50]} ★{item['stars']}")
 
+    # X(Twitter) 수집
+    print("\n[4] X(Twitter) 수집...")
+    if TWITTER_API_KEY:
+        x_items = get_x_posts(TWITTER_API_KEY)
+        for item in x_items:
+            if item["id"] not in seen_ids:
+                new_items.append(item)
+                seen_ids.add(item["id"])
+                print(f"  ✓ [X @{item['author']}] {item['title'][:50]} ❤{item['stars']}")
+    
     # 기존 feed.json 로드 (status 보존)
     feed_path = "data/feed.json"
     existing = {}
@@ -370,3 +383,56 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def get_x_posts(api_key):
+    """twitterapi.io로 X(Twitter) Claude Code 관련 포스트 수집"""
+    import subprocess
+    queries = [
+        "claude code",
+        "MCP model context protocol claude",
+        "claude code hooks skills",
+        "anthropic claude agent",
+        "claude code tips workflow",
+    ]
+    items = []
+    seen = set()
+    for q in queries:
+        result = subprocess.run([
+            'curl', '-s',
+            f"https://api.twitterapi.io/twitter/tweet/advanced_search?query={q.replace(' ','+')}&queryType=Top&count=8",
+            '-H', f'X-API-Key: {api_key}',
+            '-H', 'Accept: application/json',
+        ], capture_output=True, text=True, timeout=30)
+        try:
+            data = json.loads(result.stdout)
+            for t in data.get('tweets', []):
+                tid = t.get('id', '')
+                if not tid or tid in seen:
+                    continue
+                seen.add(tid)
+                auth = t.get('author', {})
+                likes = t.get('likeCount', 0)
+                if likes < 5:
+                    continue
+                item = {
+                    'id': f"x-{tid}",
+                    'type': 'x',
+                    'platform': 'X',
+                    'author': auth.get('userName', ''),
+                    'author_name': auth.get('name', ''),
+                    'title': t.get('text', '')[:120],
+                    'description': t.get('text', ''),
+                    'url': t.get('url') or f"https://x.com/{auth.get('userName','')}/status/{tid}",
+                    'score': likes,
+                    'comments': t.get('replyCount', 0),
+                    'created_at': t.get('createdAt', ''),
+                    'fetched_at': datetime.now(timezone.utc).isoformat(),
+                    'tag': 'Claude Code',
+                    'status': 'inbox',
+                    'stars': likes,
+                }
+                items.append(item)
+        except Exception as e:
+            print(f"  X parse ERR: {e}")
+    return items
