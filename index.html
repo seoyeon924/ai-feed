@@ -400,6 +400,10 @@ function renderCards() {
     </div>
     <div class="card-translation" id="trans-${escAttr(item.id)}" style="display:none;"></div>`;
 
+    // 저장 버튼
+    const isSaved = item.saved === true;
+    const saveBtn = `<button class="btn-save ${isSaved ? 'saved' : ''}" onclick="toggleSave('${escAttr(item.id)}')" title="${isSaved ? '저장 취소' : '저장'}">${isSaved ? '⭐' : '☆'}</button>`;
+
     // action button
     let actionBtn = '';
     if (item.status === 'applied') {
@@ -419,7 +423,7 @@ function renderCards() {
       ${titleLine}
       ${bodyLine}
       ${statsLine}
-      <div class="card-actions">${actionBtn}</div>
+      <div class="card-actions">${saveBtn}${actionBtn}</div>
     </div>`;
   }).join('');
 }
@@ -484,6 +488,15 @@ function confirmApply() {
   closeModal();
   renderCards();
   console.log(`[승인] ${currentItem.title} → ${selectedChapter}`);
+}
+
+// ── Save ─────────────────────────────────────────────────────────
+function toggleSave(id) {
+  const item = allItems.find(i => i.id === id);
+  if (!item) return;
+  item.saved = !item.saved;
+  saveLocal(item);
+  renderCards();
 }
 
 // ── Translation ──────────────────────────────────────────────────
