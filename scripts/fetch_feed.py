@@ -179,6 +179,109 @@ def get_claude_changelog():
         print(f"  Changelog ERR: {e}")
         return []
 
+def fetch_plain(url):
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "ai-feed-bot/1.0"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        print(f"  ERR {url}: {e}")
+        return None
+
+
+def get_hn_posts():
+    """HN에서 claude code 관련 인기 포스트 수집"""
+    import urllib.parse as _urlparse
+    queries = ["claude code", "claude AI agent", "MCP model context protocol"]
+    items = []
+    seen = set()
+    for q in queries:
+        url = (
+            f"https://hn.algolia.com/api/v1/search"
+            f"?query={_urlparse.quote(q)}&tags=story&hitsPerPage=10"
+            f"&numericFilters=points>10"
+        )
+        data = fetch_plain(url)
+        if not data:
+            continue
+        for hit in data.get("hits", []):
+            pts = hit.get("points", 0)
+            if pts < 10:
+                continue
+            oid = hit.get("objectID", "")
+            item_id = f"hn-{oid}"
+            if item_id in seen:
+                continue
+            seen.add(item_id)
+            item = {
+                "id": item_id,
+                "type": "hn",
+                "platform": "HN",
+                "author": hit.get("author", ""),
+                "title": hit.get("title", ""),
+                "description": hit.get("story_text", "") or "",
+                "url": hit.get("url") or f"https://news.ycombinator.com/item?id={oid}",
+                "hn_url": f"https://news.ycombinator.com/item?id={oid}",
+                "score": pts,
+                "comments": hit.get("num_comments", 0),
+                "created_at": hit.get("created_at", ""),
+                "fetched_at": datetime.now(timezone.utc).isoformat(),
+                "tag": "Claude Code",
+                "status": "inbox",
+                "stars": pts,
+            }
+            items.append(item)
+    return items
+
+
+def get_reddit_posts():
+    subreddits = ["ClaudeAI", "AIToolsHub", "artificial"]
+    keywords = ["claude code", "mcp", "claude agent"]
+    items = []
+    seen = set()
+    for sub in subreddits:
+        url = f"https://www.reddit.com/r/{sub}/hot.json?limit=20"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "ai-feed-bot/1.0"})
+            with urllib.request.urlopen(req, timeout=10) as r:
+                data = json.loads(r.read())
+        except Exception as e:
+            print(f"  Reddit ERR r/{sub}: {e}")
+            continue
+        for post in data.get("data", {}).get("children", []):
+            p = post.get("data", {})
+            title = p.get("title", "").lower()
+            text = p.get("selftext", "").lower()
+            if not any(k in title or k in text for k in keywords):
+                continue
+            ups = p.get("ups", 0)
+            if ups < 10:
+                continue
+            item_id = f"reddit-{p.get('id', '')}"
+            if item_id in seen:
+                continue
+            seen.add(item_id)
+            item = {
+                "id": item_id,
+                "type": "reddit",
+                "platform": "Reddit",
+                "author": p.get("author", ""),
+                "subreddit": sub,
+                "title": p.get("title", ""),
+                "description": (p.get("selftext", "") or "")[:500],
+                "url": f"https://reddit.com{p.get('permalink', '')}",
+                "score": ups,
+                "comments": p.get("num_comments", 0),
+                "created_at": datetime.fromtimestamp(p.get("created_utc", 0), tz=timezone.utc).isoformat(),
+                "fetched_at": datetime.now(timezone.utc).isoformat(),
+                "tag": "Claude Code",
+                "status": "inbox",
+                "stars": ups,
+            }
+            items.append(item)
+    return items
+
+
 def main():
     import urllib.parse
 
@@ -214,6 +317,24 @@ def main():
             seen_ids.add(c["id"])
             print(f"  ✓ {c['title']}")
 
+    # 4. HN 포스트 수집
+    print("\n[4] HN 포스트 수집...")
+    hn_posts = get_hn_posts()
+    for item in hn_posts:
+        if item["id"] not in seen_ids:
+            new_items.append(item)
+            seen_ids.add(item["id"])
+            print(f"  ✓ [HN] {item['title'][:60]} ★{item['stars']}")
+
+    # 5. Reddit 포스트 수집
+    print("\n[5] Reddit 포스트 수집...")
+    reddit_posts = get_reddit_posts()
+    for item in reddit_posts:
+        if item["id"] not in seen_ids:
+            new_items.append(item)
+            seen_ids.add(item["id"])
+            print(f"  ✓ [Reddit r/{item['subreddit']}] {item['title'][:50]} ★{item['stars']}")
+
     # 기존 feed.json 로드 (status 보존)
     feed_path = "data/feed.json"
     existing = {}
@@ -233,7 +354,7 @@ def main():
             item["note"] = old_item.get("note", "")
         merged.append(item)
 
-    # 스타 내림차순 정렬
+    # 스코어 내림차순 정렬
     merged.sort(key=lambda x: x.get("stars", 0), reverse=True)
 
     feed = {

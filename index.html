@@ -19,6 +19,15 @@
   --txt3: #8A9BB0;
   --red: #D64949;
   --amber: #C87941;
+
+  /* Platform colors */
+  --hn: #FF6600;
+  --reddit: #FF4500;
+  --github: #1B2D3D;
+  --threads: #000000;
+  --x: #1DA1F2;
+  --linkedin: #0077B5;
+  --manual: #8A9BB0;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg); color: var(--txt); min-height: 100vh; }
@@ -35,10 +44,11 @@ body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--b
 
 /* TOOLBAR */
 .toolbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 24px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.filter-group { display: flex; gap: 4px; }
-.filter-btn { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg); color: var(--txt2); cursor: pointer; font-family: inherit; transition: all 0.15s; }
+.filter-group { display: flex; gap: 4px; flex-wrap: wrap; }
+.filter-btn { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg); color: var(--txt2); cursor: pointer; font-family: inherit; transition: all 0.15s; display: flex; align-items: center; gap: 5px; }
 .filter-btn:hover { background: var(--border); }
 .filter-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.filter-btn .platform-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
 .toolbar-sep { width: 1px; height: 20px; background: var(--border); }
 .search-wrap { flex: 1; max-width: 280px; }
 .search-input { width: 100%; font-size: 12px; padding: 5px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--txt); font-family: inherit; outline: none; }
@@ -46,38 +56,95 @@ body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--b
 .count-badge { font-size: 10px; color: var(--txt3); margin-left: auto; }
 
 /* ADD URL */
-.add-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 24px; display: flex; gap: 8px; }
+.add-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 24px; display: flex; gap: 8px; align-items: center; }
 .url-input { flex: 1; font-size: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; outline: none; color: var(--txt); }
 .url-input:focus { border-color: var(--teal); }
-.btn-add { background: var(--teal); color: var(--navy); font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 6px; border: none; cursor: pointer; font-family: inherit; }
+.btn-add { background: var(--teal); color: var(--navy); font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 6px; border: none; cursor: pointer; font-family: inherit; white-space: nowrap; }
+.btn-add:hover { opacity: 0.9; }
 
-/* GRID */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; padding: 16px 24px; }
+/* GRID — 3-col masonry-style */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; padding: 18px 24px; align-items: start; }
 
-/* CARD */
-.card { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: box-shadow 0.15s; }
-.card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+/* SOCIAL CARD */
+.card {
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.15s, transform 0.1s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); transform: translateY(-1px); }
 .card.approved { border-left: 3px solid var(--teal); }
-.card.applied { border-left: 3px solid var(--txt3); opacity: 0.7; }
-.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
-.card-tag { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 3px; background: var(--teal-a); color: var(--teal); white-space: nowrap; }
-.card-tag.mcp { background: rgba(106,74,138,0.1); color: #6A4A8A; }
-.card-tag.viz { background: rgba(74,122,155,0.1); color: var(--navy2); }
-.card-tag.prompt { background: rgba(200,121,65,0.12); color: var(--amber); }
-.card-tag.front { background: rgba(74,106,74,0.1); color: #4A6A4A; }
-.card-tag.etc { background: rgba(27,45,61,0.06); color: var(--txt2); }
-.card-stars { font-size: 10px; color: var(--txt3); white-space: nowrap; }
-.card-title { font-size: 13px; font-weight: 700; color: var(--txt); margin-bottom: 4px; }
-.card-desc { font-size: 11px; color: var(--txt2); line-height: 1.55; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.card-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
-.card-meta-item { font-size: 9px; color: var(--txt3); background: rgba(27,45,61,0.05); padding: 2px 6px; border-radius: 3px; }
-.card-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-.btn-link { font-size: 10px; color: var(--txt3); text-decoration: none; padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; }
-.btn-link:hover { color: var(--navy); }
-.btn-apply { font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; border: none; cursor: pointer; font-family: inherit; background: var(--navy); color: #fff; }
+.card.applied { border-left: 3px solid var(--txt3); opacity: 0.65; }
+
+/* card header row */
+.card-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card-badges { display: flex; align-items: center; gap: 6px; }
+
+/* Platform badge */
+.platform-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.platform-badge.hn      { background: var(--hn); }
+.platform-badge.reddit  { background: var(--reddit); }
+.platform-badge.github  { background: var(--github); }
+.platform-badge.threads { background: var(--threads); }
+.platform-badge.x       { background: var(--x); }
+.platform-badge.linkedin{ background: var(--linkedin); }
+.platform-badge.manual  { background: var(--manual); }
+.platform-badge.changelog { background: var(--teal); color: var(--navy); }
+
+/* Tag badge */
+.tag-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 3px; background: var(--teal-a); color: var(--teal); white-space: nowrap; }
+.tag-badge.mcp     { background: rgba(106,74,138,0.1); color: #6A4A8A; }
+.tag-badge.viz     { background: rgba(74,122,155,0.1); color: var(--navy2); }
+.tag-badge.prompt  { background: rgba(200,121,65,0.12); color: var(--amber); }
+.tag-badge.front   { background: rgba(74,106,74,0.1); color: #4A6A4A; }
+.tag-badge.etc     { background: rgba(27,45,61,0.06); color: var(--txt2); }
+
+/* Author + time row */
+.card-author { font-size: 11px; color: var(--txt3); display: flex; align-items: center; gap: 5px; }
+.card-author .author-name { color: var(--txt2); font-weight: 600; }
+
+/* Title */
+.card-title { font-size: 14px; font-weight: 700; color: var(--txt); line-height: 1.4; }
+
+/* Body text */
+.card-body {
+  font-size: 12px;
+  color: var(--txt2);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Stats row */
+.card-stats { display: flex; align-items: center; gap: 12px; }
+.stat-item { font-size: 11px; color: var(--txt3); display: flex; align-items: center; gap: 3px; }
+.stat-item .stat-num { font-weight: 600; color: var(--txt2); }
+
+/* Actions row */
+.card-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 2px; }
+.btn-link { font-size: 10px; color: var(--txt3); text-decoration: none; padding: 4px 10px; border: 1px solid var(--border); border-radius: 5px; transition: all 0.15s; }
+.btn-link:hover { color: var(--navy); border-color: var(--navy2); }
+.btn-hn-link { font-size: 10px; color: var(--hn); text-decoration: none; padding: 4px 10px; border: 1px solid rgba(255,102,0,0.25); border-radius: 5px; }
+.btn-hn-link:hover { background: rgba(255,102,0,0.07); }
+.btn-apply { font-size: 10px; font-weight: 700; padding: 5px 11px; border-radius: 5px; border: none; cursor: pointer; font-family: inherit; background: var(--navy); color: #fff; margin-left: auto; white-space: nowrap; }
 .btn-apply:hover { background: var(--navy2); }
 .btn-apply.approved { background: var(--teal); color: var(--navy); }
-.btn-applied { font-size: 10px; color: var(--txt3); padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; background: transparent; cursor: default; font-family: inherit; }
+.btn-applied { font-size: 10px; color: var(--txt3); padding: 5px 11px; border: 1px solid var(--border); border-radius: 5px; background: transparent; cursor: default; font-family: inherit; margin-left: auto; }
 
 /* CHAPTER MODAL */
 .modal-overlay { position: fixed; inset: 0; background: rgba(27,45,61,0.5); z-index: 200; display: flex; align-items: center; justify-content: center; }
@@ -95,12 +162,6 @@ body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--b
 .btn-confirm { font-size: 12px; font-weight: 700; padding: 7px 16px; border: none; border-radius: 6px; background: var(--teal); color: var(--navy); cursor: pointer; font-family: inherit; }
 
 .empty { text-align: center; padding: 60px 24px; color: var(--txt3); font-size: 13px; }
-
-/* status indicator */
-.status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 4px; }
-.status-dot.inbox { background: var(--txt3); }
-.status-dot.approved { background: var(--teal); }
-.status-dot.applied { background: var(--txt3); opacity: 0.4; }
 </style>
 </head>
 <body>
@@ -118,15 +179,26 @@ body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--b
 </div>
 
 <div class="toolbar">
-  <div class="filter-group" id="status-filters">
-    <button class="filter-btn active" data-status="all" onclick="setFilter('status','all',this)">전체</button>
-    <button class="filter-btn" data-status="inbox" onclick="setFilter('status','inbox',this)">검토중</button>
-    <button class="filter-btn" data-status="approved" onclick="setFilter('status','approved',this)">승인됨</button>
-    <button class="filter-btn" data-status="applied" onclick="setFilter('status','applied',this)">반영완료</button>
+  <!-- Platform filter tabs -->
+  <div class="filter-group" id="platform-filters">
+    <button class="filter-btn active" data-platform="all" onclick="setFilter('platform','all',this)">전체</button>
+    <button class="filter-btn" data-platform="HN" onclick="setFilter('platform','HN',this)">
+      <span class="platform-dot" style="background:var(--hn)"></span>HN
+    </button>
+    <button class="filter-btn" data-platform="Reddit" onclick="setFilter('platform','Reddit',this)">
+      <span class="platform-dot" style="background:var(--reddit)"></span>Reddit
+    </button>
+    <button class="filter-btn" data-platform="GitHub" onclick="setFilter('platform','GitHub',this)">
+      <span class="platform-dot" style="background:var(--github)"></span>GitHub
+    </button>
+    <button class="filter-btn" data-platform="manual" onclick="setFilter('platform','manual',this)">
+      <span class="platform-dot" style="background:var(--manual)"></span>직접추가
+    </button>
   </div>
   <div class="toolbar-sep"></div>
+  <!-- Tag filter -->
   <div class="filter-group" id="tag-filters">
-    <button class="filter-btn active" data-tag="all" onclick="setFilter('tag','all',this)">전체</button>
+    <button class="filter-btn active" data-tag="all" onclick="setFilter('tag','all',this)">전체 태그</button>
     <button class="filter-btn" data-tag="Claude Code" onclick="setFilter('tag','Claude Code',this)">Claude Code</button>
     <button class="filter-btn" data-tag="MCP" onclick="setFilter('tag','MCP',this)">MCP</button>
     <button class="filter-btn" data-tag="데이터 시각화" onclick="setFilter('tag','데이터 시각화',this)">데이터 시각화</button>
@@ -141,8 +213,8 @@ body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--b
 </div>
 
 <div class="add-bar">
-  <input class="url-input" id="url-input" placeholder="URL 붙여넣기 (GitHub, X, 링크드인, 스레드...)">
-  <button class="btn-add" onclick="addUrl()">추가</button>
+  <input class="url-input" id="url-input" placeholder="URL 붙여넣기 (GitHub, X, 링크드인, Reddit, HN, Threads...)">
+  <button class="btn-add" onclick="addUrl()">+ 추가</button>
 </div>
 
 <div class="grid" id="grid"></div>
@@ -167,28 +239,59 @@ const FEED_URL = './data/feed.json';
 
 let allItems = [];
 let localItems = JSON.parse(localStorage.getItem('ai-feed-local') || '[]');
-let filters = { status: 'all', tag: 'all' };
+let filters = { platform: 'all', tag: 'all' };
 let currentItem = null;
 let selectedChapter = '';
 
+// ── Platform helpers ──────────────────────────────────────────────
+function detectPlatform(url) {
+  if (!url) return 'manual';
+  const u = url.toLowerCase();
+  if (u.includes('news.ycombinator.com')) return 'HN';
+  if (u.includes('reddit.com'))           return 'Reddit';
+  if (u.includes('github.com'))           return 'GitHub';
+  if (u.includes('threads.net'))          return 'Threads';
+  if (u.includes('twitter.com') || u.includes('x.com')) return 'X';
+  if (u.includes('linkedin.com'))         return 'LinkedIn';
+  return 'manual';
+}
+
+function platformKey(platform) {
+  const m = { 'HN': 'hn', 'Reddit': 'reddit', 'GitHub': 'github', 'Threads': 'threads', 'X': 'x', 'LinkedIn': 'linkedin' };
+  return m[platform] || 'manual';
+}
+
+function platformColor(platform) {
+  const m = {
+    'HN': '#FF6600', 'Reddit': '#FF4500', 'GitHub': '#1B2D3D',
+    'Threads': '#000000', 'X': '#1DA1F2', 'LinkedIn': '#0077B5'
+  };
+  return m[platform] || '#8A9BB0';
+}
+
+function itemPlatform(item) {
+  if (item.platform) return item.platform;
+  if (item.type === 'github_repo' || item.type === 'changelog') return 'GitHub';
+  if (item.type === 'hn') return 'HN';
+  if (item.type === 'reddit') return 'Reddit';
+  if (item.type === 'manual') return detectPlatform(item.url);
+  return 'GitHub';
+}
+
+// ── Feed loading ──────────────────────────────────────────────────
 async function loadFeed() {
   try {
     const r = await fetch(FEED_URL + '?t=' + Date.now());
     const data = await r.json();
     allItems = data.items || [];
-    // 로컬 변경사항 병합
     localItems.forEach(local => {
       const idx = allItems.findIndex(i => i.id === local.id);
-      if (idx >= 0) {
-        allItems[idx] = { ...allItems[idx], ...local };
-      } else {
-        allItems.unshift(local);
-      }
+      if (idx >= 0) allItems[idx] = { ...allItems[idx], ...local };
+      else allItems.unshift(local);
     });
     document.getElementById('updated-at').textContent = '업데이트 ' + new Date(data.updated_at).toLocaleString('ko');
     renderCards();
   } catch(e) {
-    // 로컬 항목만 표시
     allItems = localItems;
     document.getElementById('updated-at').textContent = '오프라인 (로컬 데이터)';
     renderCards();
@@ -207,51 +310,113 @@ function tagClass(tag) {
   return m[tag] || 'etc';
 }
 
+function relativeTime(dateStr) {
+  if (!dateStr) return '';
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1)   return '방금';
+  if (m < 60)  return `${m}분 전`;
+  const h = Math.floor(m / 60);
+  if (h < 24)  return `${h}시간 전`;
+  const d = Math.floor(h / 24);
+  if (d < 30)  return `${d}일 전`;
+  return dateStr.slice(0, 10);
+}
+
+// ── Render ────────────────────────────────────────────────────────
 function renderCards() {
   const q = document.getElementById('search-input').value.toLowerCase();
   let items = allItems.filter(item => {
-    if (filters.status !== 'all' && item.status !== filters.status) return false;
+    const plat = itemPlatform(item);
+    // platform filter: 'manual' tab catches manual + unknown platforms
+    if (filters.platform !== 'all') {
+      if (filters.platform === 'manual') {
+        if (!['manual','Threads','X','LinkedIn'].includes(plat) && item.type !== 'manual') return false;
+      } else {
+        if (plat !== filters.platform) return false;
+      }
+    }
     if (filters.tag !== 'all' && item.tag !== filters.tag) return false;
-    if (q && !((item.title||'').toLowerCase().includes(q) || (item.description||'').toLowerCase().includes(q) || (item.full_name||'').toLowerCase().includes(q))) return false;
+    if (q && !((item.title||'').toLowerCase().includes(q) ||
+               (item.description||'').toLowerCase().includes(q) ||
+               (item.full_name||'').toLowerCase().includes(q) ||
+               (item.author||'').toLowerCase().includes(q))) return false;
     return true;
   });
   document.getElementById('count-badge').textContent = items.length + '개';
 
   const grid = document.getElementById('grid');
-  if (!items.length) { grid.innerHTML = '<div class="empty">표시할 항목이 없어요</div>'; return; }
+  if (!items.length) {
+    grid.innerHTML = '<div class="empty">표시할 항목이 없어요</div>';
+    return;
+  }
 
   grid.innerHTML = items.map(item => {
-    const stars = item.stars ? `★ ${item.stars.toLocaleString()}` : '';
-    const lang = item.language ? `<span class="card-meta-item">${item.language}</span>` : '';
-    const ch = item.chapter ? `<span class="card-meta-item">→ ${item.chapter}</span>` : '';
-    const updated = item.updated_at ? `<span class="card-meta-item">${item.updated_at.slice(0,10)}</span>` : '';
+    const plat = itemPlatform(item);
+    const platKey = platformKey(plat);
+    const score = item.score ?? item.stars ?? 0;
+    const comments = item.comments ?? 0;
+    const author = item.author || '';
+    const timeStr = relativeTime(item.created_at || item.updated_at || item.fetched_at);
+    const body = item.description || '';
 
+    // platform badge
+    const platBadge = `<span class="platform-badge ${platKey}">${plat}</span>`;
+
+    // tag badge
+    const tagB = item.tag ? `<span class="tag-badge ${tagClass(item.tag)}">${item.tag}</span>` : '';
+
+    // author line
+    const authorLine = author
+      ? `<div class="card-author"><span>👤</span><span class="author-name">${escHtml(author)}</span>${timeStr ? `<span>·</span><span>${timeStr}</span>` : ''}</div>`
+      : (timeStr ? `<div class="card-author"><span>${timeStr}</span></div>` : '');
+
+    // title
+    const titleLine = `<div class="card-title">${escHtml(item.title || item.full_name || '')}</div>`;
+
+    // body
+    const bodyLine = body ? `<div class="card-body">${escHtml(body)}</div>` : '';
+
+    // stats
+    const statsLine = `<div class="card-stats">
+      <span class="stat-item">❤ <span class="stat-num">${score.toLocaleString()}</span></span>
+      ${comments ? `<span class="stat-item">💬 <span class="stat-num">${comments.toLocaleString()}</span></span>` : ''}
+      <a class="btn-link" href="${item.url}" target="_blank">🔗 원문 보기</a>
+      ${item.hn_url && item.hn_url !== item.url ? `<a class="btn-hn-link" href="${item.hn_url}" target="_blank">HN 댓글</a>` : ''}
+    </div>`;
+
+    // action button
     let actionBtn = '';
     if (item.status === 'applied') {
       actionBtn = `<button class="btn-applied" disabled>반영완료 ✓</button>`;
     } else if (item.status === 'approved') {
-      actionBtn = `<button class="btn-apply approved" onclick="openModal('${item.id}')">승인됨 — 챕터 변경</button>`;
+      actionBtn = `<button class="btn-apply approved" onclick="openModal('${escAttr(item.id)}')">승인됨 — 챕터 변경</button>`;
     } else {
-      actionBtn = `<button class="btn-apply" onclick="openModal('${item.id}')">스크립트 반영 →</button>`;
+      actionBtn = `<button class="btn-apply" onclick="openModal('${escAttr(item.id)}')">스크립트 반영 →</button>`;
     }
 
     return `
-    <div class="card ${item.status !== 'inbox' ? item.status : ''}" id="card-${item.id}">
-      <div class="card-top">
-        <span class="card-tag ${tagClass(item.tag)}">${item.tag || '기타'}</span>
-        <span class="card-stars">${stars}</span>
+    <div class="card ${item.status !== 'inbox' ? item.status : ''}" id="card-${escAttr(item.id)}">
+      <div class="card-header">
+        <div class="card-badges">${platBadge}${tagB}</div>
       </div>
-      <div class="card-title">${item.title || item.full_name || ''}</div>
-      <div class="card-desc">${item.description || '설명 없음'}</div>
-      <div class="card-meta">${lang}${updated}${ch}</div>
-      <div class="card-actions">
-        <a class="btn-link" href="${item.url}" target="_blank">GitHub →</a>
-        ${actionBtn}
-      </div>
+      ${authorLine}
+      ${titleLine}
+      ${bodyLine}
+      ${statsLine}
+      <div class="card-actions">${actionBtn}</div>
     </div>`;
   }).join('');
 }
 
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(s) {
+  return String(s).replace(/'/g,"\\'");
+}
+
+// ── Modal ─────────────────────────────────────────────────────────
 function openModal(id) {
   currentItem = allItems.find(i => i.id === id);
   if (!currentItem) return;
@@ -285,7 +450,6 @@ function confirmApply() {
   saveLocal(currentItem);
   closeModal();
   renderCards();
-  // 텔레그램 알림 (향후 연동)
   console.log(`[승인] ${currentItem.title} → ${selectedChapter}`);
 }
 
@@ -298,32 +462,56 @@ function saveLocal(item) {
   if (idx2 >= 0) allItems[idx2] = item;
 }
 
+// ── Add URL (platform-aware) ───────────────────────────────────────
 async function addUrl() {
-  const url = document.getElementById('url-input').value.trim();
-  if (!url) return;
+  const rawUrl = document.getElementById('url-input').value.trim();
+  if (!rawUrl) return;
+
+  const platform = detectPlatform(rawUrl);
   const id = 'manual-' + Date.now();
   const item = {
-    id, type: 'manual', title: url, description: '', url,
-    stars: 0, tag: '기타', status: 'inbox',
+    id,
+    type: 'manual',
+    platform,
+    title: rawUrl,
+    description: '',
+    url: rawUrl,
+    stars: 0,
+    score: 0,
+    comments: 0,
+    tag: '기타',
+    status: 'inbox',
     fetched_at: new Date().toISOString(),
+    author: '',
+    created_at: new Date().toISOString(),
   };
-  // GitHub URL이면 파싱
-  const ghMatch = url.match(/github\.com\/([^\/]+\/[^\/\?#]+)/);
+
+  // GitHub → parse repo info
+  const ghMatch = rawUrl.match(/github\.com\/([^\/]+\/[^\/\?#]+)/);
   if (ghMatch) {
     item.full_name = ghMatch[1];
     item.title = ghMatch[1].split('/')[1];
     item.tag = 'Claude Code';
+    item.platform = 'GitHub';
   }
+
+  // HN → parse id
+  const hnMatch = rawUrl.match(/news\.ycombinator\.com\/item\?id=(\d+)/);
+  if (hnMatch) {
+    item.platform = 'HN';
+    item.hn_url = rawUrl;
+    item.title = 'HN #' + hnMatch[1];
+  }
+
   allItems.unshift(item);
   saveLocal(item);
   document.getElementById('url-input').value = '';
   renderCards();
 }
 
-// 초기 로드
+// ── Init ──────────────────────────────────────────────────────────
 loadFeed();
 
-// 모달 외부 클릭 닫기
 document.getElementById('modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
