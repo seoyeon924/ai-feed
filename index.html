@@ -180,8 +180,11 @@ body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--b
 
 <div class="toolbar">
   <!-- Platform filter tabs -->
-  <div class="filter-group" id="platform-filters">
+    <div class="filter-group" id="platform-filters">
     <button class="filter-btn active" data-platform="all" onclick="setFilter('platform','all',this)">전체</button>
+    <button class="filter-btn" data-platform="X" onclick="setFilter('platform','X',this)">
+      <span class="platform-dot" style="background:var(--x)"></span>X
+    </button>
     <button class="filter-btn" data-platform="HN" onclick="setFilter('platform','HN',this)">
       <span class="platform-dot" style="background:var(--hn)"></span>HN
     </button>
@@ -190,6 +193,12 @@ body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--b
     </button>
     <button class="filter-btn" data-platform="GitHub" onclick="setFilter('platform','GitHub',this)">
       <span class="platform-dot" style="background:var(--github)"></span>GitHub
+    </button>
+    <button class="filter-btn" data-platform="Threads" onclick="setFilter('platform','Threads',this)">
+      <span class="platform-dot" style="background:var(--threads)"></span>Threads
+    </button>
+    <button class="filter-btn" data-platform="LinkedIn" onclick="setFilter('platform','LinkedIn',this)">
+      <span class="platform-dot" style="background:var(--linkedin)"></span>LinkedIn
     </button>
     <button class="filter-btn" data-platform="manual" onclick="setFilter('platform','manual',this)">
       <span class="platform-dot" style="background:var(--manual)"></span>직접추가
