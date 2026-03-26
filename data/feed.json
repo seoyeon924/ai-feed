@@ -38,7 +38,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-shadcn-ui-ui",
@@ -67,7 +68,8 @@
       "tag": "프론트엔드",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-affaan-m-everything-claude-code",
@@ -93,7 +95,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-tailwindlabs-tailwindcss",
@@ -118,7 +121,8 @@
       "tag": "프론트엔드",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-anthropics-claude-code",
@@ -135,7 +139,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-modelcontextprotocol-servers",
@@ -152,7 +157,8 @@
       "tag": "기타",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-dair-ai-Prompt-Engineering-Guide",
@@ -181,7 +187,8 @@
       "tag": "프롬프트",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-apache-superset",
@@ -217,7 +224,8 @@
       "tag": "데이터 시각화",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-cline-cline",
@@ -234,7 +242,8 @@
       "tag": "기타",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-nextlevelbuilder-ui-ux-pro-max-skill",
@@ -271,7 +280,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-garrytan-gstack",
@@ -288,7 +298,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-ComposioHQ-awesome-claude-skills",
@@ -321,7 +332,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-metabase-metabase",
@@ -357,7 +369,8 @@
       "tag": "데이터 시각화",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-code-yeongyu-oh-my-openagent",
@@ -391,7 +404,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-Aider-AI-aider",
@@ -422,7 +436,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-CherryHQ-cherry-studio",
@@ -450,7 +465,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-gsd-build-get-shit-done",
@@ -472,7 +488,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-thedotmack-claude-mem",
@@ -510,7 +527,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-shareAI-lab-learn-claude-code",
@@ -538,7 +556,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-anthropics-anthropic-cookbook",
@@ -555,7 +574,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-danny-avila-LibreChat",
@@ -593,7 +613,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-hesreallyhim-awesome-claude-code",
@@ -629,7 +650,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-wshobson-agents",
@@ -667,7 +689,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-continuedev-continue",
@@ -693,7 +716,8 @@
       "tag": "기타",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-oraios-serena",
@@ -721,7 +745,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-winfunc-opcode",
@@ -754,7 +779,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-promptfoo-promptfoo",
@@ -790,7 +816,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-getmaxun-maxun",
@@ -826,7 +853,8 @@
       "tag": "기타",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-jarrodwatts-claude-hud",
@@ -851,7 +879,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-NousResearch-hermes-agent",
@@ -885,7 +914,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-Yeachan-Heo-oh-my-claudecode",
@@ -913,7 +943,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-BeehiveInnovations-pal-mcp-server",
@@ -930,7 +961,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-hangwin-mcp-chrome",
@@ -947,7 +979,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-mcp-use-mcp-use",
@@ -985,7 +1018,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-brexhq-prompt-engineering",
@@ -1002,7 +1036,8 @@
       "tag": "프롬프트",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-diet103-claude-code-infrastructure-showcase",
@@ -1019,7 +1054,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-idosal-git-mcp",
@@ -1046,7 +1082,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-0x4m4-hexstrike-ai",
@@ -1084,7 +1121,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-yzfly-Awesome-MCP-ZH",
@@ -1114,7 +1152,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-BrowserMCP-mcp",
@@ -1138,7 +1177,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-firecrawl-firecrawl-mcp-server",
@@ -1170,7 +1210,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-wonderwhy-er-DesktopCommanderMCP",
@@ -1196,7 +1237,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-ChrisWiles-claude-code-showcase",
@@ -1213,7 +1255,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-uwdata-vega-lite",
@@ -1239,7 +1282,8 @@
       "tag": "데이터 시각화",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-trigaten-Learn_Prompting",
@@ -1274,7 +1318,8 @@
       "tag": "프롬프트",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-wong2-awesome-mcp-servers",
@@ -1291,7 +1336,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-entireio-cli",
@@ -1315,7 +1361,8 @@
       "tag": "기타",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-parcadei-Continuous-Claude-v3",
@@ -1342,7 +1389,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-observablehq-framework",
@@ -1366,7 +1414,8 @@
       "tag": "데이터 시각화",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-disler-claude-code-hooks-mastery",
@@ -1383,7 +1432,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-heilcheng-awesome-agent-skills",
@@ -1417,7 +1467,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-MarkusPfundstein-mcp-obsidian",
@@ -1434,7 +1485,8 @@
       "tag": "MCP",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-davepoon-buildwithclaude",
@@ -1464,7 +1516,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-FlorianBruniaux-claude-code-ultimate-guide",
@@ -1502,7 +1555,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "hn-43163011",
@@ -1544,7 +1598,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-jeremylongshore-claude-code-plugins-plus-skills",
@@ -1578,7 +1633,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-0xCrunchyy-10x",
@@ -1605,7 +1661,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "reddit-1s30ilh",
@@ -1639,7 +1696,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-peterkrueck-Claude-Code-Development-Kit",
@@ -1656,7 +1714,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "hn-46593022",
@@ -1696,7 +1755,8 @@
       "tag": "데이터 시각화",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-luongnv89-claude-howto",
@@ -1717,7 +1777,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "hn-47282777",
@@ -1887,7 +1948,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-anthonylee991-gemini-superpowers-antigravity",
@@ -1904,7 +1966,8 @@
       "tag": "기타",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "reddit-1s3hh29",
@@ -1959,7 +2022,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-EtienneLescot-n8n-as-code",
@@ -1989,7 +2053,8 @@
       "tag": "기타",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-obra-superpowers-skills",
@@ -2006,7 +2071,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-23blocks-OS-ai-maestro",
@@ -2043,7 +2109,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "hn-47337607",
@@ -2090,7 +2157,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-Ibrahim-3d-conductor-orchestrator-superpowers",
@@ -2117,7 +2185,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-obra-superpowers-lab",
@@ -2134,7 +2203,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "reddit-1s3bcit",
@@ -2183,7 +2253,8 @@
       "updated_at": "2026-03-24T05:32:43Z",
       "fetched_at": "2026-03-26T09:29:41.722637+00:00",
       "tag": "Claude Code",
-      "status": "inbox"
+      "status": "inbox",
+      "platform": "GitHub"
     },
     {
       "id": "hn-46365105",
@@ -2360,7 +2431,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-boringmarketer-guides",
@@ -2377,7 +2449,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "reddit-1s3n40n",
@@ -2423,7 +2496,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "hn-45243320",
@@ -2476,7 +2550,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "gh-RosyGameStudio-forge-gpu",
@@ -2503,7 +2578,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "reddit-1s3pr9w",
@@ -2537,7 +2613,8 @@
       "tag": "Claude Code",
       "status": "inbox",
       "chapter": "",
-      "note": ""
+      "note": "",
+      "platform": "GitHub"
     },
     {
       "id": "reddit-1s3wt3n",
