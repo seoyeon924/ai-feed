@@ -381,10 +381,6 @@ def main():
 
     print(f"\n=== 완료: {len(merged)}개 저장 ===")
 
-if __name__ == "__main__":
-    main()
-
-
 def get_x_posts(api_key):
     """twitterapi.io로 X(Twitter) Claude Code 관련 포스트 수집"""
     import subprocess
@@ -436,3 +432,7 @@ def get_x_posts(api_key):
         except Exception as e:
             print(f"  X parse ERR: {e}")
     return items
+
+
+if __name__ == "__main__":
+    main()
